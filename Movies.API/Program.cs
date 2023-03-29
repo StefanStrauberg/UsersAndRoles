@@ -22,16 +22,17 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-var scope = app.Services.CreateScope();
 try
 {
-    var service = scope.ServiceProvider.GetRequiredService<DataContext>();
-    Seed.SeedData(service);
+    using var scope = app.Services.CreateScope();
+    var dataContextService = scope.ServiceProvider.GetRequiredService<DataContext>();
+    Seed.SeedData(dataContextService);
 }
 catch (Exception ex)
 {
-    var service = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
-    service.LogError(ex, "Something occurred wrong  when do migration seed to database");
+    using var scope = app.Services.CreateScope();
+    var iLoggerService = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+    iLoggerService.LogError(ex, "Something occurred wrong  when do migration seed to database");
 }
 
 if (app.Environment.IsDevelopment())
