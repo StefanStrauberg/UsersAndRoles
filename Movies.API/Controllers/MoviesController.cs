@@ -5,9 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 using Movies.API.Interfaces;
 using Movies.API.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Movies.API.Controllers
 {
+    [Authorize]
     public class MoviesController : BaseApiController
     {
         readonly IMovieRepository _repository;
