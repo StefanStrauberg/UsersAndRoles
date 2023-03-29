@@ -1,6 +1,7 @@
 
 using System.Collections.Generic;
 using IdentityServer4.Models;
+using IdentityServer4.Test;
 
 namespace IdentityServer
 {
@@ -26,6 +27,12 @@ namespace IdentityServer
 
         public static IEnumerable<IdentityResource> IdentityResources
             => new IdentityResource[]
+            {
+
+            };
+
+        public static List<TestUser> TestUsers
+            => new List<TestUser>
             {
 
             };

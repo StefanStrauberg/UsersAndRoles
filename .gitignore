@@ -353,3 +353,6 @@ MigrationBackup/
 # Ignore Db and Migrations
 *.db
 Migrations/
+
+# ignore tempkey
+*.jwk
