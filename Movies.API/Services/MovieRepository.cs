@@ -14,10 +14,11 @@ namespace Movies.API.Services
         public MovieRepository(DataContext context)
             => _context = context;
 
-        public async Task CreateAsync(Movie movie)
+        public async Task<Movie> CreateAsync(Movie movie)
         {
             _context.Movies.Add(movie);
             await _context.SaveChangesAsync();
+            return movie;
         }
 
         public async Task DeleteAsync(Movie movie)

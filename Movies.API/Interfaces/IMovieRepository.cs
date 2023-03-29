@@ -8,7 +8,7 @@ namespace Movies.API.Interfaces
     {
         Task<List<Movie>> GetAsync();
         Task<Movie> GetByIdAsync(int id);
-        Task CreateAsync(Movie movie);
+        Task<Movie> CreateAsync(Movie movie);
         Task UpdateAsync(Movie movie);
         Task DeleteAsync(Movie movie);
     }
