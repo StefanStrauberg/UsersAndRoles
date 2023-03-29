@@ -8,80 +8,97 @@ namespace Movies.API.Context
 {
     public class Seed
     {
-        public static async Task SeedDataAsync(DataContext context)
+        public static void SeedData(DataContext context)
         {
             if (context.Movies.Any())
                 return;
             
-            var data = new List<Movie>
-            {
-                new Movie
+            var movies = new List<Movie>
                 {
-                    Id = 1,
-                    Title = "Counter-Strike",
-                    Genre = "Action",
-                    ReleaseDate = DateTime.Now
-                },
-                new Movie
-                {
-                    Id = 2,
-                    Title = "Diablo",
-                    Genre = "RPG",
-                    ReleaseDate = DateTime.Now
-                },
-                new Movie
-                {
-                    Id = 3,
-                    Title = "Need For Speed",
-                    Genre = "Racing",
-                    ReleaseDate = DateTime.Now
-                },
-                new Movie
-                {
-                    Id = 4,
-                    Title = "Escape From Tarkov",
-                    Genre = "Action",
-                    ReleaseDate = DateTime.Now
-                },
-                new Movie
-                {
-                    Id = 5,
-                    Title = "Warcraft",
-                    Genre = "RPG",
-                    ReleaseDate = DateTime.Now
-                },
-                new Movie
-                {
-                    Id = 6,
-                    Title = "Asphalt",
-                    Genre = "Racing",
-                    ReleaseDate = DateTime.Now
-                },
-                new Movie
-                {
-                    Id = 7,
-                    Title = "Painkiller",
-                    Genre = "Action",
-                    ReleaseDate = DateTime.Now
-                },
-                new Movie
-                {
-                    Id = 8,
-                    Title = "Stalcraft",
-                    Genre = "RPG",
-                    ReleaseDate = DateTime.Now
-                },
-                new Movie
-                {
-                    Id = 9,
-                    Title = "Forza",
-                    Genre = "Racing",
-                    ReleaseDate = DateTime.Now
-                }
-            };
+                    new Movie
+                    {
+                        Id = 1,
+                        Genre = "Drama",
+                        Title = "The Shawshank Redemption",
+                        Rating = 9.3,
+                        ImageUrl = "images/src",
+                        ReleaseDate = new DateTime(1994, 5, 5),
+                        Owner = "alice"
+                    },
+                    new Movie
+                    {
+                        Id = 2,
+                        Genre = "Crime",
+                        Title = "The Godfather",
+                        Rating = 9.2,
+                        ImageUrl = "images/src",
+                        ReleaseDate = new DateTime(1972, 5, 5),
+                        Owner = "alice"
+                    },
+                    new Movie
+                    {
+                        Id = 3,
+                        Genre = "Action",
+                        Title = "The Dark Knight",
+                        Rating = 9.1,
+                        ImageUrl = "images/src",
+                        ReleaseDate = new DateTime(2008, 5, 5),
+                        Owner = "bob"
+                    },
+                    new Movie
+                    {
+                        Id = 4,
+                        Genre = "Crime",
+                        Title = "12 Angry Men",
+                        Rating = 8.9,
+                        ImageUrl = "images/src",
+                        ReleaseDate = new DateTime(1957, 5, 5),
+                        Owner = "bob"
+                    },
+                    new Movie
+                    {
+                        Id = 5,
+                        Genre = "Biography",
+                        Title = "Schindler's List",
+                        Rating = 8.9,
+                        ImageUrl = "images/src",
+                        ReleaseDate = new DateTime(1993, 5, 5),
+                        Owner = "alice"
+                    },
+                    new Movie
+                    {
+                        Id = 6,
+                        Genre = "Drama",
+                        Title = "Pulp Fiction",
+                        Rating = 8.9,
+                        ImageUrl = "images/src",
+                        ReleaseDate = new DateTime(1994, 5, 5),
+                        Owner = "alice"
+                    },
+                    new Movie
+                    {
+                        Id = 7,
+                        Genre = "Drama",
+                        Title = "Fight Club",
+                        Rating = 8.8,
+                        ImageUrl = "images/src",
+                        ReleaseDate = new DateTime(1999, 5, 5),
+                        Owner = "bob"
+                    },
+                    new Movie
+                    {
+                        Id = 8,
+                        Genre = "Romance",
+                        Title = "Forrest Gump",
+                        Rating = 8.8,
+                        ImageUrl = "images/src",
+                        ReleaseDate = new DateTime(1994, 5, 5),
+                        Owner = "bob"
+                    }
+                };
 
-            await context.Movies.AddRangeAsync(data);
-            await context.SaveChangesAsync();
+            context.Movies.AddRange(movies);
+            context.SaveChanges();
         }
     }
 }

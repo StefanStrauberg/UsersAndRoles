@@ -2,7 +2,6 @@ using System.Reflection;
 using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -13,8 +12,7 @@ using Movies.API.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<DataContext>(options => {
-    options.UseSqlite(builder.Configuration
-                             .GetConnectionString("DefaultConnection"));
+    options.UseInMemoryDatabase("Movies");
 });
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddScoped<IMovieRepository, MovieRepository>();
@@ -28,7 +26,7 @@ var scope = app.Services.CreateScope();
 try
 {
     var service = scope.ServiceProvider.GetRequiredService<DataContext>();
-    await Seed.SeedDataAsync(service);
+    Seed.SeedData(service);
 }
 catch (Exception ex)
 {
